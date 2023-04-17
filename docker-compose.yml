@@ -1,0 +1,25 @@
+version: "3.5"
+services:
+  heimdall:
+    image: linuxserver/heimdall
+    container_name: heimdall
+    environment:
+      - PUID=####
+      - PGID=####
+      - TZ=Europe/Samara
+    volumes:
+      - /opt/heimdall/config:/config
+    ports:
+      - 9001:80
+      - 9002:443
+    restart: always
+
+  flame:
+    image: pawelmalak/flame
+    container_name: flame
+    environment:
+      - 'PASSWORD=123'
+    volumes:
+      - /opt/flame/data:/app/data
+    ports:
+      - 5005:5005
